@@ -1,0 +1,424 @@
+20-05-2019
+CSS3 Flex Properties
+
+
+display:flex/flex-inline;  // using this fit according to screen size.
+flex-grow:3/4; // width of block.
+flex-direction:row/row-reverse/coloumn;column-reverse;
+order:2/1/4; // we dont need to change item position.
+flex-wrap:wrap/no-wrap/wrap-reverse;
+align-items:strech/flex-start/flex-end/center/baseline;
+justify-content: space-between/space-around/space-evenly/flex-start/flex-end/center;
+
+ 20-05-2019                                NodeJS:-
+
+- It is an open source cross platform JS run time environment.that executes js code outside of a browser.
+- NodeJS allows a developer to use JS language for server side scripting.
+- NodeJS has event driven architecture capable of implementing asynchoronous I/O communications.
+- The architecture of nodeJS design aims to optimise & implement scalibility in web applications with many I/O operations.
+- NodeJS is distribute devlopment project been govern by nodeJS foundation.
+- It is been developed by Mr.Ryan Dal in year 2009.
+
+diagram of event driven architecture.
+  https://code burst.io/all-about-node-js-you-wanted-to-know-25433740be7
+
+NPM (node package manager):
+- Is a default package manager for JS runtime environment nodeJS.
+- It consist of commandline client also called as NPM.
+- Using npm we could able to install update or uninstall node modules from the node environment following are some of the commands can be executed within npm client.
+  
+  npm -v //return the current version of npm.
+  npm install <packagename> -g  // Installs the package
+  npm un <packagename> // uninstall the package
+  npm ls // Lists out all the node modules been installed.
+  npm up <packagename> // updates the required package to latest version.
+  etc.
+
+- we can't directly interact with a database.
+- Data is always in database(MongoDB) or FS(file system).
+- we will be going to server (Appache,NodeJS,.Net,TomCat).
+- web service create a connection between server and database.
+- React,Angular all lies in UI client side not in server.
+- NodeJS takes directly JS code, so we use this.
+- serverside is executed in nodeJS environment and Client side is executed in browser.
+- Why NodeJS Popular?
+  Available free and open source(personal or commercial).
+- module :- like library/package
+- follows event looping mechanism/ Single thread/ event driven/ (i/o based).
+  fig. 
+- NodeJS is faster-3 than any other because of JavaScript due to all browser is based on JavaScript.
+- Its doesn't handle the DOMhtml and css.
+
+21-05-2019
+
+ - wride "node" in cmd to create node environment. eg. 6+6 gives 12.
+
+  > Steps to create http server in Node JS :-
+
+  1) download & install http module.
+    > npm install http
+  2) create a separate js file used to hold all server side js code.
+  3) create an instance for http module using required method.
+  > var http = require('http');
+  4) using create server method of http module. create a server instance.
+  eg. var server = http.createServer(function(req, res){
+       ...// req and res are predefined objects, where req, holds the complete information of current req, 
+            and res is the object through which we return the response back to the client
+       })
+  5) make the server to listen to a perticular port no. using listen method "listen()".
+  6) to response back to a user request and to specify type of content being written bee use the following method.
+       writeHead() - To write the type of content
+      .listen() - To make server to listen to a particular port number.
+    eg.   response.writeHead(200,{"Content-Type" : "text/plain"});
+          response.end("Hello World\n");
+ -----------
+ in myserver.js file
+
+    var http = require("http");
+
+var server = http.createServer(function(req, res){
+
+    res.writeHead(200,{"Content-Type" : "text/html"});
+    res.end("<b>hey i got created</b>");
+});
+
+server.listen(8081, function(){
+    console.log("server listing at 8081");
+})
+
+in cmd write node myserver.js
+open 8081 port  in browser.
+-------------------------------------------------------------------------
+      
+   
+     Implementing file operation using fs module :-
+   - fs is a predefined node module using which we could able to read or write the file content.
+   - Following are the steps need to be followed fs module -
+     1) Download & include fs module
+        > npm install fs
+     2) create an instance of fs module.
+       > var fs = require("fs");
+     3) use the following predifined methods to read write update or delete from the file system.
+     > fs.readFile("") - used to read the file info
+     > fs.writeFile() - Used to open a file to write content to it.
+     > fs.appendFile() - To add content to the last of file
+     > fs.unlink() - Used to delete a file from filesystem.
+     etc.
+   
+  
+
+  Q. how to take a data from a perticular url of the server.
+
+  Reading get data from Node JS using 'URL' module :-
+ -Following are the steps need to be followed in order to read all the values been passed to a server using GET communication.
+ 1) download and include URL module.
+  > var url = require("url");
+ 2) parse the current request url using "url.parse()"
+   eg.  var urlObject = url.parse(req.url, true);
+ 3) ".query" is the key under which all the user passed data will be available as an object.
+
+
+23-05-2019
+   Express JS :- 
+ - It is a web application server framework for nodejs provides essential & moderate web framework for nodejs.
+ - It can be used to design SP or multi page or hybrid web application.
+ 
+ NOTE:- "express-generator"
+   - Is a pre-define module on the top of express module which provides all the basic folder structure and the  minimum set of resources which are needed to create a node server.
+ 
+- Following are the steps need to be followed to create a node server using Express and express-generator:-
+ Step-1) Download and install express and express-generator module.
+    > npm install -g express
+    > npm install express-generator -g
+Step-2) Using express command create a server with user defined name.
+  Syntax:-
+      express <servername>
+ eg.
+      express webapplication
+ Step-3) Using cd command go into the created server folder.
+       > cd webapplication
+ Step-5) In order to install all the dependicies module use the command.
+       > npm install
+ Step-6) The above command pick up the all the required/dependency module from the package.jason file & installs them.
+
+package.json file
+ - open app.js file specify the port no. from where the server need to listen
+
+ - Use "npm start" command to start the server.
+
+
+Folder Structure of a Node server been created by using express-generator module:-
+ bin - Folder holds the server file "www" holds the set of instructions to create a server and handle errors.
+
+ package.json - A file holds the extra information of current server, like name of author, description of current server, location, list of  dependency node modules etc.
+
+ node_modules - Holds the list of all node modules the current server is dependent on.
+
+ public - Folder holds the list of all static resources which need to be accessable directly.
+
+ views - Holds the list of all template files, which gets generated from server side (jade / pug files)
+
+ routes - Holds the list of all webservices of current server
+ 
+ app.js - Files holds the set of instruction for below jobs
+    1.  Specifying the static resources path.
+    2.  Specifying the template rendering engine type and location of template files.
+    3.  Specifying the handling of error handling.
+    4.  Specifying the logger instance.
+    5.  Specifying the webservices routing path 
+    etc.
+
+ -  __dirname predefined in nodejs not work in js.
+
+
+24-5-2019
+         	Creating Webservice in Node JS:-
+
+- webservice an independent set of instruction getting executed at serverside capable of a taking request from the  user, process at resoponces back accordingly.
+- In a single server there could be more than webservice runing.
+- Every webservice get's indentify through a unique URL.
+
+- Ajax is the concept by which we can create cummunication b/w client and the webservice.
+
+- Following are the steps need to be followed while creating a webservice with in node express server:-
+
+     Note:- Routes' is a pre-defined folder under which all the webservices exist.
+
+Step-1) Create a separate JS file under "routes" folder.
+Step-2) With in the JS file, create an instance of express module, create an instance of "Router" wich is under express module.
+  eg.   var express = require('express');
+         var router = express.Router();
+Step-3) Under the router object make use of get or post methods , using which we handle request been send by the client and response object through which respond back to the user request.
+eg.   router.get("/", function(req, res){ ... });
+      router.post("/", function(req, res) { ... });
+Step-4) Under the callback method, we processed the user request implement the business logic & respond back accordingly.
+Step-5) "res.send()" is a pre-defined method, using which we send the responce back to the user request.
+Step-6) Under app.js file configure the route path for the webservice been created.
+ eg.  var usersRouter = require('./router/user');
+      ...
+      ...
+      app.use('/test/sample/users', usersRouter);
+
+Note:- All websevices we created are in routes folder.
+      - every webservices we want to separate JS file. i.e. No. of webservices = No. of JS file
+      - Every webservices is independent to each other. work separatly.
+      - copy the user.js file and paste it in your new js file/webservice. very little modification needed.
+
+
+- files must be in express>public folder
+
+   drive/absolute path-  file:///E:/express/mywebservice/public/Assignment-3/index.html
+
+     localhost:8084/Assignment-3/index.html
+
+ http://server:8084/Assignment-3/index.html   -- not working
+    server- systemname
+
+25-05-2019
+       Q. Why JSON.stringify() is used before sending data to server ?
+      -
+ - cros (cross origin object resource).
+ - jQuery templating use.
+ 
+
+27-05-2019
+ - For requesting to server -- "req.query"
+
+             /**    Reading post data in NodeJS :-    **/
+ - "body/parser" is  the pre-defined module using which we could able to read the post data been send by the server.
+ - Following are the steps need to be followed:-
+ 1) Download & include body/parser module.
+ > http://www.mongodb.com/
+ > var bodyParser = require('body-parser');
+ 2) Use the body parser instance within app instance to support JSON-encoded bodies & URL-encoded bodies.
+ > app.use( bodyParser.json());  // to support JSON-encoded bodies
+ > app.use(bodyParser.urlencoded({  // to support URL-encoded bodies
+   extended: true
+   }));
+  - once after the above steps, in every webservice "req.body" will hold all the data been send through "post" type of communication.
+  > "req.body"
+ 
+                  /**      MongoDB    **/
+ - MongoDB is a cross platform document oriented database program which is classified as NO SQL DATABASE Programme.
+ - It uses JSON type of structure to store the data in it.
+ - It is been developed by "MongoDB.inc" organisation in year 2009.
+ - It is the dedicated webpage been maintained by MongoDB through which we can download the latest and older versions of MongoDataBase, it even provides the documentation to intract with MongoDB.
+ >
+ - Following are some of the commands which are be executed with in the mongo client.
+    > show dbs - Return the list of all databases available
+    > use <dbname> - Uses the specified database name as current database
+    > db - Return the name of current database
+    > show collections - Return the list of collection with in the current database.
+    > db.<collectionName>.find() - Returns the records of selected database.
+         > db.collectionName.count()
+    > db.dropDatabase() - It drops the current database.
+    > db.collectionName.drop() - It drops the named collection.
+    > db.createCollection("<name>") - Creates a collection under current database.
+    > db.COLLECTION_NAME.drop() - drops the specified collection from database.
+    > db.COLLECTION_NAME.insert({document}) - Used to insert a single documents from current collection which matches the provided options.
+         > db.products.insertOne({"p_id":666, "p_name":"p_six", "p_cost":"600000"})
+         > db.products.insertMany([ { item: "card", qty: 15 }, { item: "envelope", qty: 20 }, { item: "stamps" , qty: 30 } ])
+    > db.COLLECTION_NAME.find({option}) - Used to find the documents from current collectionwhich matches the provided options.
+    > db.COLLECTION_NAME.update(pattern, updateddocument) - Used to find the document and update with provided update values.
+        > db.COLLECTION_NAME.update({"id":"value"}, {$set:{"name":"value","cost":"value"}})
+        > db.COLLECTION_NAME.updateOne( {}, {$set:{} })
+        > db.COLLECTION_NAME.updateMany( {}, [{$set:{} }])
+    > db.COLLECTION_NAME.save({_id:'value'}, newobject) - Used to replace/overwrite "_id" the current document with new one.
+    > db.COLLECTION_NAME.remove({remove criteria}) - Used to remove a document from a collection.
+    > db.COLLECTION_NAME.remove({}) - although no remove criteria. it remove all the documents within the collection. 
+        > db.products.deleteOne({"p_id":null})
+    > db.close() - should close the db connection.
+
+
+In cmd not in mongo shell:-
+--------------------------
+-- fetch from collection to file and insert from file to collection
+mongoimport --db buddy --collection buddy --file C:\Users\Faiz\Downloads\passengersData.json --jsonArray
+mongoexport --db buddy --collection buddy --out C:\Users\Faiz\Downloads\passengersData2.json --jsonArray
+
+-- first convert file .xls/excel to .csv by saveas method, dont convert by renaming the file
+mongoimport --db buddy --collection excelsheet1 --type csv --file C:\Users\Faiz\Downloads\excelsheet.csv --headerline
+mongoexport --db buddy --collection buddy --type=csv --out C:\Users\Faiz\Downloads\excelsheet.csv --fields name,age
+-- name, age is common name.
+
+Note:- MongoDB compass is a pre-defined tool been provided by MongoDB team used to provide the GUI through which we can do Operations on MongoDB
+https://www.w3schools.com/nodejs/nodejs_mongodb_delete.asp
+https://docs.mongodb.com/manual/reference/method/db.collection.drop/
+
+28-05-2019
+   - go through teacherstutorial.
+  Steps need to be followed to create a connection from nodejs to mongoDB:-
+ 1) Download and install node module mongoDB.
+   > npm install mongodb -g
+ 2) include the mongodb module into the application using "required" method.
+  > var mongodb = require("mongodb:);
+ 3) create a refrence of mongo client from the mongodb module.
+  > var mongoclient = mongodb.MongoClient;
+ 4) create mongodb URL specifying the server name, portno. where it is running & database name to which we have to connect to.
+  > "mongodb://localhost:27017/<MyDb>"  // default port
+ 5) using connect method of mongo client connect to the database.
+    Syntax:-
+  > MongoClient.connect(url, function(err,db) {  // first parameter is "err" bcz of nodeJS standard
+     // db object through which we could connect to mongo db.
+   });
+ 6) using db.collection method specify the collection name to which it has to connect to, which returns the refrence of collection on which we can apply the mongodb command.
+  > db.collection(<collection name>, function(err, collection){
+    // ... commands to be applied on collection
+    });
+  7) Following are the some examples to query on collections:-
+   i) collection.find().toArray(function(err, items) {
+        if(err) throw err;
+       console.log(items);
+       });
+   ii) collection.update(<object>, function(err, result) {
+       });
+   iii) collection.remove(<obj>, function(err, result) { ... });
+    etc.
+ Note:- Every time we insert a document within a collection, there should be a unique key need to be added for every record as '_id'.
+        If we add '_id' with value it becomes the unique refrence else, it automatically creates a key '_id' and assigns a unique value to it.
+
+     - "req.query" for GET communication.
+     - "req.body" for POST communication.
+
+
+29-05-2019   Practical of prev. class
+
+
+
+30-05-2019                                /** Socket Connection **/
+
+ - Using socket connection, we could able to publish data/content to a larger audience with a unique key.
+ - Users who ever is holding thw unique key could able to subscribe the data automatically without any request.
+ - Using scockets we communicate b/w client and server or server to client in the form of publish and subscribe mechanism.
+ - "socket.io" is a pre-defined module through which we could able to implement socket communication in nodeJS.
+ - Following are are the steps need to be followed while creating socket communication in nodeJS with express.
+ Step-1) Download and include socket.io node pre-difined module.
+        > npm install socket.io
+ Step-2) Include "socket.io" in app.js file and create an http server using express app instance.
+        > var server = require('http').createServer(app);
+        > var io = require('socket.io')(server);
+ Step-3) Through io object create a connection, socket is a pre-defined object which gets returned from the connection using which restablised socket communication.
+        > io.on('connection', function(socket) {
+             // using socket object we establish the connection.
+          });
+ Step-4) Following are the pre defined methods through which we could able to publish or subscribe data.
+        > socket.on - Get invoked automatically when there is a response from a provided socket id.
+          eg:   socket.on("key", function(data) {
+                  // data been published
+                });
+        > socket.broadcast.emit - Used to emit/broadcast data to all the sockets other than the one who has just published.
+           socket.broadcast.emit("key", msg);
+        > io.emit - Used to publish the data to all the  connected sockets including the one which is just published.
+           io.emit("key", msg);
+
+                     /** Publishing and subscribe data through socket at client side **/
+
+ - socket.io.js is the pre-defined JS library using which we can established socket communication at client side.
+ - Following are the steps needs to be followed to create socket communication at client side using "socket.io.js"
+ Step-1) Download and include "socket.io.js" file or through CDN.
+ Step-2) Create a socket object using "io" method by passing the server name and port where it is running.
+         > var socket = io('http://localhost:8083/');
+ Step-3) socket.on and socket.emit are the predefined methods through which we can publish and subscribe data at client side.
+ 
+
+31-05-2019  
+
+01-01-2019  
+                        Q. Dynamic pages at client Side vs Server side rendering page.
+
+                            /** Server Side Rendering Pages **/ (Not Recommended) for knowledge only.
+ - Node js provide a feature of generating the complete html page from the server itself using "JADE/PUG" templating concept.
+ NOTE:- it is never recommended to generate the pages at the server side, it is always recommended to get data from the server through AJAX at client side and generate the webpage at client side.
+
+ - "res.render()" is a pre-defined method through which we can return the html/template along with data injected back to the user request.
+ 
+ Syntax:-
+       res.render('<jade/pug filename>', <object which need to be injectede>);
+  eg:
+        res.render('index', { title: 'Express'});
+
+ - "Views" is the default folder all the template need to be reside under node express server.
+
+ Note:-  "__dir" gives complete folder path/url.
+        - "routes" folder all webservices resides.
+        - "views" folder all templates (not a complete html page only piece of codes) - Jade file.
+
+        - "jade" file dont mix spaces and tab spaces bcz it gives error. follow only any one of these in entire jade page.
+        - "|" pipe symbol to take as content in jade file.
+
+        - "res.render()" - send whole html page to the server.
+        - "res.send()" - send only data to server.
+-------------------------------------------------------------------------
+ - jade file :-
+doctype html
+html
+	head
+	link()
+	script(type="text/javascript" src="")
+	title
+	| Jade
+	body
+--------------------------------------------------------------------------	
+ - io.on() - get/subscribe a message/data from server.
+ - socket.broadcaste.emit() - publish a message/data from server.
+
+Note:- Grid system in Bootstrap.
+  -Bootstrap based on 12 division/column to current screen.
+ col-md-3            sm - smallerDevice screen
+ col-md-6            md - mediumDevice
+ col-md-3            lg - largeDevise
+---total=12          xs - verySmallDevice
+-----------------------------------------------------------------------
+ Q. Pagination ?
+
+  nazimsheikh28@gmail.com   9199400777
+
+
+
+
+
+
+
+
+
+
